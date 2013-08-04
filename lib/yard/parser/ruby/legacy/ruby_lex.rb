@@ -1,3 +1,4 @@
+#coding: UTF-8
 require "e2mmap"
 require "irb/slex"
 
@@ -686,7 +687,7 @@ module YARD
           if @lex_state != EXPR_END && @lex_state != EXPR_CLASS &&
              (@lex_state != EXPR_ARG || @space_seen)
             c = peek(0)
-            tk = identify_here_document if /[-\w_\"\'\`]/ =~ c
+            tk = identify_here_document if /[-\p{Word}_\"\'\`]/ =~ c
           end
           if !tk
             @lex_state = EXPR_BEG
@@ -938,7 +939,7 @@ module YARD
         end
 
         @OP.def_rule('@') do
-          if peek(0) =~ /[@\w_]/
+          if peek(0) =~ /[@\p{Word}_]/
             ungetc
             identify_identifier
           else
@@ -964,7 +965,7 @@ module YARD
           printf "MATCH: start %s: %s\n", op, io.inspect if RubyLex.debug?
           if peek(0) =~ /[0-9]/
             t = identify_number("")
-          elsif peek(0) =~ /[\w_]/
+          elsif peek(0) =~ /[\p{Word}_]/
             t = identify_identifier
           end
           printf "MATCH: end %s: %s\n", op, io.inspect if RubyLex.debug?
@@ -998,7 +999,7 @@ module YARD
                end
                ungetc
                Token(TkNTH_REF)
-             when /\w/
+             when /\p{Word}/
                ungetc
                ungetc
                return identify_identifier
@@ -1014,7 +1015,7 @@ module YARD
         token.concat getc if peek(0) =~ /[$@]/
         token.concat getc if peek(0) == "@"
 
-        while (ch = getc) =~ /\w|_/
+        while (ch = getc) =~ /[\p{Word}_]/
           print ":", ch, ":" if RubyLex.debug?
           token.concat ch
         end
@@ -1106,7 +1107,7 @@ module YARD
         else
           lt = '"'
           quoted = ch.dup
-          while (c = getc) && c =~ /\w/
+          while (c = getc) && c =~ /\p{Word}/
             quoted.concat c
           end
           ungetc
@@ -1145,12 +1146,12 @@ module YARD
         if lt = PERCENT_LTYPE[ch]
           initial_char += ch
           ch = getc
-        elsif ch =~ /\W/
+        elsif ch =~ /[^\p{Word}]/
           lt = "\""
         else
           # RubyLex.fail SyntaxError, "unknown type of %string ('#{ch}')"
         end
-        # if ch !~ /\W/
+        # if ch !~ /[^\p{Word}]/
         #   ungetc
         #   next
         # end
