@@ -1,5 +1,7 @@
 # YARD: Yay! A Ruby Documentation Tool
 
+NOTE: The real version of YARD is made by Loren Segal (lsegal on github).  This is a fork by David Grayson which tries to have unicode support.
+
 **Homepage**:     http://yardoc.org
 
 **IRC**:          [irc.freenode.net / #yard](irc://irc.freenode.net/yard)    
