@@ -1,14 +1,14 @@
 # YARD: Yay! A Ruby Documentation Tool
 
-**Homepage**:     http://yardoc.org   
+NOTE: The real YARD gem is maintained by Loren Segal. This is a fork made by DavidEGrayson to fix some things that were bothering him.
+
+**Homepage**:     http://yardoc.org
 **IRC**:          [irc.freenode.net / #yard](irc://irc.freenode.net/yard)    
-**Git**:          http://github.com/lsegal/yard   
-**Author**:       Loren Segal  
+**Git**:          http://github.com/DavidEGrayson/yard
+**Author**:       David Grayson ~~Loren Segal~~
 **Contributors**: http://github.com/lsegal/yard/contributors    
 **Copyright**:    2007-2013    
-**License**:      MIT License    
-**Latest Version**: 0.8.7    
-**Release Date**: July 26th 2013    
+**License**:      MIT License 
 
 ## Synopsis
 
