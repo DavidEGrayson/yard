@@ -123,8 +123,9 @@ module YARD
       add_ignored_plugins_file
       translate_plugin_names
       load_plugins
-    rescue
+    rescue => e
       log.error "Invalid configuration file, using default options."
+      log.backtrace(e)
       options.update(DEFAULT_CONFIG_OPTIONS)
     end
 
@@ -132,6 +133,7 @@ module YARD
     # @return [void]
     def self.save
       require 'yaml'
+      Dir.mkdir(CONFIG_DIR) unless File.directory?(CONFIG_DIR)
       File.open(CONFIG_FILE, 'w') {|f| f.write(YAML.dump(options)) }
     end
 

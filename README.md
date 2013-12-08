@@ -54,7 +54,7 @@ following method documented with YARD formatting:
      # @param [String, #read] contents the contents to reverse
      # @return [String] the contents reversed lexically
      def reverse(contents)
-       contents = contents.read if respond_to? :read
+       contents = contents.read if contents.respond_to? :read
        contents.reverse
      end
 
@@ -288,6 +288,23 @@ More options can be seen by typing `yard graph --help`, but here is an example:
 
 
 ## Changelog
+
+- **November.1.13**: 0.8.7.3 release
+    - Handle Unicode method/class/file names in server URL encoding (lsegal/rubydoc.info#69).
+    - Style keyword style hashes with same symbol color in code highlighting (#707).
+    - Fix broken JS when visiting docs in file:// scheme (#706).
+    - Add support for new AsciiDoc file extensions (#704).
+    - Fix issues where non-Ruby code blocks would not display in Ruby 2 (#702).
+    - Add support for extra Ruby 2 symbol types in Ripper (#701).
+    - Ensure config directory exists before saving config file (#700).
+
+- **September.18.13**: 0.8.7.2 release
+    - Disallow absolute URLs when using frame anchor support.
+    - Support casted functions in CRuby method declarations (#697)
+
+- **September.11.13**: 0.8.7.1 release
+    - Fix potential XSS issue with frame anchor support.
+    - Add support for gettext 3.x gem.
 
 - **July.26.13**: 0.8.7 release
     - Added `--hide-api API` option to hide objects with a given `@api` tag (#685).
