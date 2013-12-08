@@ -53,7 +53,11 @@ task :specs do
     $DEBUG = true
     opts += ['-d']
   end
-  opts += FileList["spec/**/*_spec.rb"].sort
+  if ENV['SPEC']
+    opts += ENV['SPEC'].split(' ')
+  else
+    opts += FileList["spec/**/*_spec.rb"].sort
+  end
   cmd = opts.join(' ')
   puts cmd if Rake.application.options.trace
   system(cmd)
