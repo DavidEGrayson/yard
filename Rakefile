@@ -6,20 +6,14 @@ YARD::VERSION.replace(ENV['YARD_VERSION']) if ENV['YARD_VERSION']
 
 task :default => :specs
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "deg-yard"
-  gem.homepage = "http://github.com/DavidEGrayson/yard"
-  gem.license = "MIT"
-  gem.summary = "DavidEGrayson's fork of the YARD gem with unicode support."
-  gem.description = "The real YARD gem is maintained by Loren Segal. This is a fork made by DavidEGrayson to fix some things that were bothering him."
-  gem.email = "davidegrayson@gmail.com"
-  gem.authors = ["David Grayson", "Loren Segal"]
-  gem.version = YARD::VERSION
-  # dependencies defined in Gemfile
+task :gem do
+  sh "gem build yard.gemspec"
 end
-Jeweler::RubygemsDotOrgTasks.new
+
+desc "Installs the gem"
+task :install => :gem do
+  sh "gem install yard-#{YARD::VERSION}.gem --no-rdoc --no-ri"
+end
 
 begin
 require 'rvm-tester'
