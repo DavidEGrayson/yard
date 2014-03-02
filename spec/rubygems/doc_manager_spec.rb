@@ -1,6 +1,5 @@
 # I had to make some changes to this file because deg-yard.gemspec has a different name
-# and a few different properties than the official yard.gemspec.  Mine was generated
-# by Jeweler while the official one is part of Loren Segal's git repository.
+# and a few different properties than the official yard.gemspec.
 
 require File.dirname(__FILE__) + '/../spec_helper'
 require File.join(YARD::ROOT, 'rubygems_plugin')
@@ -18,7 +17,6 @@ describe Gem::DocManager do
     @spec_file = File.join(YARD::ROOT, '..', 'deg-yard.gemspec')
     @spec = Gem::SourceIndex.load_specification(@spec_file)
     @spec.has_yardoc = false # no yardoc docs for now
-    @spec.extra_rdoc_files = []
     @yardopts = File.join(@spec.full_gem_path, '.yardopts')
     @doc = Gem::DocManager.new(@spec)
     @doc.stub(:install_ri_yard_orig)
